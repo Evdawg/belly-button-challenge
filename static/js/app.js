@@ -5,7 +5,7 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 // console.log("Data Promise: ", promise)
 
 
-let selectedItem = "940"; // #todo change this to be dynamic later on user selection of dropdown.
+// let selectedItem = "940"; // #todo change this to be dynamic later on user selection of dropdown.
 
 
 let data = {};
@@ -16,64 +16,45 @@ d3.json(url).then(
     function(response) {
     console.log(response);
     data = response;
-    names = response["names"];
-    console.log(names);
-    metadata = response["metadata"];
-    console.log(metadata);
-    samples = response["samples"];
-    console.log(samples);
-
-    updateDashboard();
+    updateDashboard("940"); // #todo need to update this to be dynamic based on user dropdown selection
     }
 );
 
 // This function is to ensure that Dashboard is updated after API call is completed. I think...
 // #todo selectedItem will become a parameter to be passed in this function. Figure that out later.
-function updateDashboard() {
-
+function updateDashboard(selectedItem) {
     console.log(data)
+    let samples = data.samples;
+
+    let arrayIndex = data.names.findIndex(val => val == selectedItem);
+
+    // dynamically 
+    let otu_ids = samples[arrayIndex].otu_ids;
+    let otu_labels = samples[arrayIndex].otu_labels;
+    let sample_values = samples[arrayIndex].sample_values;
+
+    // update demographic info here.
+
+    // plot horizontal chart here. These individual charts can all be setup in separate functions outside this update dashboard function
+        // Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
+        // Use sample_values as the values for the bar chart.
+        // Use otu_ids as the labels for the bar chart.
+        // Use otu_labels as the hovertext for the chart.
+
+
+    // plot the gauge chart here.
+
+
+
+
+    // plot the bubble chart here.
+
+
 
 };
 
 
+
 // I need to figure out how to get the relevant data (sample values, otu ids, and otu labels) into
 // separate arrays. Populate those from my "response" variable.
-// Try using .map() for this.
-
-// // part 1: Bar chart ---------------------------------------------------------------------------------
-// Create a horizontal bar chart with a dropdown menu to display the top 10 OTUs found in that individual.
-// Use sample_values as the values for the bar chart.
-// Use otu_ids as the labels for the bar chart.
-// Use otu_labels as the hovertext for the chart.
-
-
-// initialize the arrays for the bar chart data:
-let sample_values = [];
-
-
-
-let otu_ids = [];
-
-
-
-let otu_labels = [];
-
-
-
-// // use For loop to populate the arrays:
-// for (let i = 0; i < data.length; i++) {
-//     let row = data[i];
-//     sample_values.push(row.someName);
-//     otu_ids.push(row.otu_ids);
-//     otu_labels.push(row.otu_labels);
-//     samples.push(row.samples);
-// };
-
-// console.log(sample_values);
-
-
-// Trace 1 for sample_values:
-// let trace1 = {
-//     x: 
-
-// }
+// Try using .map() for this???
