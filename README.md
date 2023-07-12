@@ -7,8 +7,7 @@ Graded __/100
 
 Sources:
 
-[1] edX Boot Camps LLC. Module 14, Day XXXXX Activity XXXX: 
-	
+[1] edX Boot Camps LLC. Module 15, Day 01 Zoom Lecture Office hours.
 
 [2] 
 
