@@ -7,6 +7,7 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 // let selectedItem = "940"; // #todo change this to be dynamic later on user selection of dropdown.
 // dropdown options will be from a list of the names array.
 
+console.log("This is a console log of APP.JS!");
 let data = {};
 let selDataset = d3.select("#selDataset");
 
@@ -17,6 +18,17 @@ d3.json(url).then(
     function(response) {
         // console.log(response);
         data = response;
+        // Assign variables for your data from the JSON:
+        let names = data.names;
+        let metadata = data.metadata;
+        let samples = data.samples;
+        
+        // sanity check the data variables with console.log:
+        console.log("Names: ", names);
+        console.log("Metadata: ", metadata);
+        console.log("Samples: ", samples);
+
+
         populateDropdown();
         updateDashboard(data.names[0]); // #todo need to update this to be dynamic based on user dropdown selection
     }
@@ -42,7 +54,11 @@ function updateDemographicInfo(metadata) {
     console.log(metadata);
     demographicInfoDiv.html(
         `Ethnicity: ${metadata.ethnicity}<br>
-         Gender: ${metadata.gender}    
+         Gender: ${metadata.gender}<br>
+         Age: ${metadata.age}<br>
+         Location: ${metadata.location}<br>
+         bbtype: ${metadata.bbtype}<br>
+         wfreq: ${metadata.wfreq}
         `
     );
 }
@@ -62,6 +78,7 @@ function plotBubbleChart() {
 
 // This function is to ensure that the Dashboard is updated after API call is completed. I think...
 // #todo selectedItem will become a parameter to be passed in this function. Figure that out later.
+// This is your init function that pulls all your other functions together to do the cool stuff:
 function updateDashboard(selectedItem) {
     console.log(data);
     let samples = data.samples;
