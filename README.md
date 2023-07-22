@@ -12,8 +12,5 @@ Sources:
 [2] D3 Charting methods:
 	https://d3-graph-gallery.com/index.html
 
-[3] 
-
-[4] 
-
-[5] 
+[3] Additional Plotly documentation and examples:
+	https://www.w3schools.com/js/js_graphics_plotly.asp

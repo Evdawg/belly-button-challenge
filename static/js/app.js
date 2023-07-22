@@ -111,7 +111,28 @@ function plotBarChart(xData, yData, hoverText) {
 
 
 function plotBubbleChart(xData, yData, markerSizeData, markerColorsData, textValuesData) {
+    const xArray = xData;
+    const yArray = yData;
 
+    console.log(xArray);
+    const trace2 = {
+        x: xArray,
+        y: yArray,
+        text: textValuesData,
+        mode: 'markers',
+        marker: {
+            color: markerColorsData,
+            size: markerSizeData
+        }
+    };
+
+    const data = [trace2];
+
+    const layout = {
+    title: "Individual's Bubble Plot"
+    };
+
+    Plotly.newPlot('bubble', data, layout);
 
 }
 
@@ -147,7 +168,7 @@ function updateDashboard(selectedItem) {
 
 
     // plot the bubble chart here.
-    plotBubbleChart();
+    plotBubbleChart(otu_ids, sample_values, sample_values, otu_ids, otu_labels);
 }
 
 
