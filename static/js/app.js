@@ -1,4 +1,4 @@
-// read in the JSON data:
+// read in the JSON data, assign as constant:
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
 // const promise = d3.json(url);
@@ -23,7 +23,7 @@ d3.json(url).then(
         let metadata = data.metadata;
         let samples = data.samples;
         
-        // sanity check the data variables with console.log:
+        // sanity check of the data variables with console.log:
         console.log("Names: ", names);
         console.log("Metadata: ", metadata);
         console.log("Samples: ", samples);
@@ -63,15 +63,54 @@ function updateDemographicInfo(metadata) {
     );
 }
 
+
 // #todo create a horizontal bar chart by setting x and y to values of uhhh... otu_ids, otu_labels and otu_values
-// from uhhh... the variables containing arrays below. 
-function plotBarChart() {
+// from uhhh... the variables containing selectedData arrays below. Use Plotly activity examples from class:
+    // Source [2]
+function plotBarChart(xData, yData, hoverText) {
+    
+    let sortedData = yData.sort(function(a, b){return b-a});
+    // console.log(sortedData)
+    slicedData = sortedData.slice(0,10);
+    console.log(slicedData);
+    // sortedData = slicedData.sort((a, b) => b.slicedData - a.slicedData);
+    // reversedData = slicedData.reverse();
+    
+    let trace1 = {
+        x: xData,
+        y: slicedData,
+        text: hoverText,
+        type: 'bar',
+        orientation: "h",
+        // hoverinfo: hoverText,
+        width: 20
+
+    };
+
+    let traceData = [trace1];
+
+    let layout = {
+        title: 'Top 10 OTUs per Individual',
+        barmode: "group",
+        margin: {
+            l: 100,
+            r: 100,
+            t: 100,
+            b: 100
+        }
+        // yaxis: {
+        //     type: 'category',
+        //     tickvals: data.y
+        // }
+    };
 
 
-}
+    var config = {responsive: true}
+    Plotly.newPlot("bar", traceData, layout)
+};
 
 
-function plotBubbleChart() {
+function plotBubbleChart(xData, yData, markerSizeData, markerColorsData, textValuesData) {
 
 
 }
@@ -99,7 +138,7 @@ function updateDashboard(selectedItem) {
         // Use sample_values as the values for the bar chart.
         // Use otu_ids as the labels for the bar chart.
         // Use otu_labels as the hovertext for the chart.
-    plotBarChart();
+    plotBarChart(sample_values, otu_ids, otu_labels);
 
 
     // plot the gauge chart here.
